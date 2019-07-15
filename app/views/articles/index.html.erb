@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">TechBlog</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ><%= link_to 'Home', root_path %></li></ul>
+      <ul class="nav navbar-nav">
+        <li class="active"><%= link_to 'My Articles', user_articles_path %></li></ul>
+      <ul class="nav navbar-nav">
+        <li> <%= link_to 'New article', new_user_article_path %> </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="disabled"><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li></ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+</head>
+
+
+<div class="container ">
+  <div class="page-header">
+    <h1><p>
+      Listing Articles
+    </p></h1>
+
+  </div>
+<table class="table table-hover table-light table-responsive-lg">
+  <thead class="thead-dark">
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+  </thead>
+  <tbody>
+  <div class="panel panel success">
+  <% current_user.articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><div class="btn btn-success btn-lg"><%= link_to 'Show', user_article_path(current_user,article),class: "label label-success" %></div>
+        <div class="btn btn-info btn-lg"><%= link_to 'Edit', edit_user_article_path(current_user,article),class: "label label-info" %></div>
+          <div class="btn btn-danger btn-lg"><%= link_to 'Destroy', user_article_path(current_user,article),class: "label label-danger",
+                      method: :delete, data: { confirm: 'Are you sure?' } %></div></td>
+
+    </tr>
+      </div>
+    </tbody>
+  <% end %>
+</table>
+</div>

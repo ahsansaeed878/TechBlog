@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">TechBlog</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ><%= link_to 'Home', root_path %></li></ul>
+      <ul class="nav navbar-nav">
+        <li class="active"><%= link_to 'My Articles', user_articles_path %></li></ul>
+      <ul class="nav navbar-nav">
+        <li> <%= link_to 'New article', new_user_article_path %> </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="disabled"><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li></ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+</head>
+<div class="container ">
+  <div class="page-header">
+    <h1><p>
+      <%= @article.title %>
+    </p></h1>
+
+  </div>
+
+  <div class="panel panel-success">
+    <div class="panel-heading "><p>
+      <strong>By </strong>
+      <%= current_user.name %>
+    </p> </div>
+    <div class="panel-body"><p>
+      <%= @article.text %>
+    </p></div>
+  </div>
+
+  <div class="btn btn-success btn-lg">
+    <%= link_to 'Edit', edit_user_article_path(current_user, @article), class: "label label-success" %>
+  </div>
+
+
+  <div class="page-header">
+    <h1><p>
+      Comments
+    </p></h1>
+  </div>
+  <div class="panel panel-success">
+    <% @article.comments.each do |comment| %>
+    <div class="panel-heading "><p>
+      <strong>By </strong>
+      <%= comment.commenter %>
+    </p> </div>
+      <div class="panel-body"><p>
+        <%= comment.body %>
+      </p></div>
+      <div class="panel panel-footer">
+        <div class="btn btn-danger">
+      <%= link_to 'Delete', user_article_comment_path(current_user, @article, comment),class: "label label-danger",
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %>
+      </div>
+      </div>
+  <% end %>
+  </div>
+  <div class="page-header">
+    <h1><p>
+      Add Comment
+    </p></h1>
+  </div>
+<%= render 'comments/form' %>
+</div>

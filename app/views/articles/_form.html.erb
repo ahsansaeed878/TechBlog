@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">TechBlog</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ><%= link_to 'Home', root_path %></li></ul>
+      <ul class="nav navbar-nav">
+        <li ><%= link_to 'My Articles', user_articles_path %></li></ul>
+      <ul class="nav navbar-nav">
+        <li class="active"> <%= link_to 'New article', new_user_article_path %> </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="disabled"><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li></ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+</head>
+<div class = "container ">
+  <div class="page-header">
+    <h1><p>
+      New Article
+    </p></h1>
+
+  </div>
+  <div><br></div>
+<%= form_with scope: @article ,url: user_articles_path , local: true do |form| %>
+
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@article.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="panel panel-success">
+    <div class="form-group panel-heading">
+      <label for="exampleInputEmail1">Title</label>
+      <input type="text" class="form-control" name="article[title]" id="article_title" aria-describedby="emailHelp" placeholder="Enter Title" required autofocus>
+      <small id="emailHelp" class="form-text text-muted">Title Should be atleast of Length 4.</small>
+    </div>
+    <div class="form-group panel-body">
+      <label for="exampleInputEmail1">Text</label>
+      <input type="text" class="form-control" name="article[text]" id="article_text" aria-describedby="commentHelp" placeholder="Write Comment" required>
+    </div>
+  </div>
+  <p>
+    <%= form.submit 'Create Article',class: "btn btn-success"%>
+  </p>
+
+<% end %>
+</div>

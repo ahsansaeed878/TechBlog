@@ -1,0 +1,25 @@
+<h1>Welcome to TechBlog</h1>
+
+<% if current_user %>
+  Logged in as <%= current_user.email %>.
+  <%= link_to "Log Out", logout_path %>
+  <h2>Add an Article:</h2>
+  <%= form_with(model: [ @user, @user.articles.build ], local: true) do |form| %>
+    <p>
+      <%= form.label :Title %><br>
+      <%= form.text_field :title %>
+    </p>
+    <p>
+      <%= form.label :text %><br>
+      <%= form.text_area :text %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+<% else %>
+  <%= link_to "Sign Up", signup_path %> or
+  <%= link_to "Log In", login_path %>
+<% end %>
+<p id="notice"><%= notice %></p>
+

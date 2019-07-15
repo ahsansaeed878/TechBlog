@@ -1,0 +1,62 @@
+<%= stylesheet_link_tag "main.css" %>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+  <title>Signin Template for Bootstrap</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+  <!-- Bootstrap core CSS -->
+  <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="signin.css" rel="stylesheet">
+</head>
+
+
+</html>
+<%= form_with scope: :session, url: sessions_path, local: true do |form| %>
+
+  <body class="ex1 text-white">
+
+  <div class="card bg-dark col-sm-5 col-md-7 col-lg-3 mx-auto">
+    <div class="card-header"><h1>TechBlog</h1></div>
+    <div class="card-body text-center">
+      <form class="form-signin col-sm-9 col-md-7 col-lg-9 mx-auto">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <p id="alert"><%= alert %></p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" name="session[email]" id="session_email" class="form-control" placeholder="Email address" required autofocus>
+        <div>
+          <br>
+        </div>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="session[password]" id="session_password" class="form-control" placeholder="Password" required>
+        <div>
+          <br>
+        </div>
+        <div >
+            <%= form.submit 'Sign In',class: "btn btn-success btn-lg btn-block"%>
+        </div>
+        <div><br></div>
+        <div class="btn btn-info btn-lg btn-block">
+          <%= link_to 'Sign Up', '/signup', class: "label" %>
+        </div>
+        <p class="mt-5 mb-3 text-muted">&copy; 2019-2020</p>
+      </form>
+    </div>
+  </div>
+  </body>
+
+<% end %>
+

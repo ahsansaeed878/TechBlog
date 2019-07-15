@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">TechBlog</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ><%= link_to 'Home', root_path %></li></ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li></ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="disabled"><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+</head>
+<div class = "container ">
+  <div class="page-header">
+    <h1><p>
+      Registration
+    </p></h1>
+
+  </div>
+  <div><br></div>
+  <%= form_with scope: :user, url: users_path, local: true do |form| %>
+
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@user.errors.count, "error") %> prohibited
+          this User from being Created:
+        </h2>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="panel panel-success">
+      <div class="form-group panel-heading">
+        <label for="exampleInputEmail1">Name</label>
+        <input type="text" class="form-control" name="user[name]" id="user_name" aria-describedby="emailHelp" placeholder="Enter Title" required autofocus>
+        <small id="emailHelp" class="form-text text-muted">Name Should be atleast of Length 4.</small>
+      </div>
+      <div class="form-group panel-body">
+        <label for="exampleInputEmail1">Email</label>
+        <input type="text" class="form-control" name="user[email]" id="user_email" aria-describedby="commentHelp" placeholder="Write Comment" required>
+      </div>
+      <div class="form-group panel-heading">
+        <label for="exampleInputEmail1">Password</label>
+        <input type="password" class="form-control" name="user[password]" id="user_password" aria-describedby="emailHelp" placeholder="Enter Title" required>
+      </div>
+      <div class="form-group panel-body">
+        <label for="exampleInputEmail1">Confirm Password</label>
+        <input type="password" class="form-control" name="user[password_confirmation]" id="user_password_confirmation" aria-describedby="commentHelp" placeholder="Write Comment" required>
+        <small id="commentHelp" class="form-text text-muted">Please Enter same Password as above.</small>
+      </div>
+    </div>
+    <p>
+      <%= form.submit 'Create User',class: "btn btn-success"%>
+    </p>
+
+  <% end %>
+  <%= link_to 'Already have an Account?', '/login' %>
+</div>
+
+
+

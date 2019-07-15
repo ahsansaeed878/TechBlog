@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">TechBlog</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ><%= link_to 'Home', root_path %></li></ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li></ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ><a href="/login"><span class="glyphicon glyphicon-log-out"></span> Login</a></li>
+      </ul>
+    </div>
+  </nav>
+</head>
+
+<div class="container">
+  <div class="page-header">
+    <h1><p>
+      TechBlog
+    </p></h1>
+
+  </div>
+<p class="alert alert-success">
+  <strong>User has Successfully Created</strong>
+  <br>
+    <strong>Email:</strong>
+    <%= @user.email %>
+</p>
+  <p>
+    <strong>Please First Confirm your Email.</strong>
+  </p>
+
+
+`</div>
